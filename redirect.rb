@@ -17,7 +17,7 @@ def getMac(ip)
 end
 
 get '/*' do
-  request.inspect
+ puts request.inspect
 end
 
 get '/callback' do
