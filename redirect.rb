@@ -16,7 +16,7 @@ def getMac(ip)
   end
 end
 
-get %r{/(.+)} do
+get %r{\/(.+)} do
   mac = getMac(request.ip)
   "Your IP address is #{request.ip} and your MAC is #{mac}"
   postData = Net::HTTP.post_form(URI.parse(serverurl), 
