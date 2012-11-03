@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'net/http'
 require 'uri'
+require 'digest/sha1'
 
 serverurl = "http://posttestserver.com/post.php"
 serverurl = "http://charity-wifi.cgb.im/test"
@@ -19,10 +20,10 @@ get '/' do
   mac = getMac(request.ip)
   "Your IP address is #{request.ip} and your MAC is #{mac}"
   postData = Net::HTTP.post_form(URI.parse(serverurl), 
-  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => url('/auth')})
+  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => url('/callback')})
   postData.body
 end
 
-post '/auth' do
-  pp params
+get '/callback' do
+ puts "returned" 
 end
