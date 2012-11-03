@@ -22,6 +22,7 @@ get '/*' do
   postData = Net::HTTP.post_form(URI.parse(serverurl), 
   {'ip' => request.ip, 'mac' => mac, 'redirect_to' => 'http://172.16.254.1/callback', 'path' => request.path_info, 'orig_host' => request.host})
   postData.body
+  sleep(5.seconds)
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{mac} -j NET")  
 end
 
