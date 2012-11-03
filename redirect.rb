@@ -17,15 +17,11 @@ def getMac(ip)
 end
 
 get '/*' do
-  mac = getMac(request.ip)
-  "Your IP address is #{request.ip} and your MAC is #{mac}"
-  postData = Net::HTTP.post_form(URI.parse(serverurl), 
-  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => 'http://172.16.254.1/callback', 'path' => request.path_info, 'orig_host' => request.host})
-  postData.body
+  puts request.inspect
 end
 
 get '/callback' do
- mac = params["mac"]
+ mac = getMac(request.ip)
  redirect_to = params["redirect_to"]
  system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{mac} -j NET")
 
