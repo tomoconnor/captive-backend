@@ -1,0 +1,20 @@
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+	<!-- Identify your business so that you can collect the payments. -->
+
+	<input type="hidden" name="business" value="polfning@aol.com"> <!-- Specify a Donate button. -->
+	<input type="hidden" name="cmd" value="_donations"> <!-- Specify details about the contribution -->
+	<input type="hidden" name="currency_code" value="GBP">
+	<input type="hidden" name="item_name" value="Internet Access Donation">
+	<input type="hidden" name="InvoiceID" value="|M123456-1| Donation via MissionFish for BBC Children in Need">
+	<input type="hidden" name="return" value="<%= cancel_url %>">
+	<input type="hidden" name="cancel_return" value="<%= cancel_url %>">
+	<input type="hidden" name="cbt" value="Continue surfing">
+
+	<!-- <input type="hidden" name="amount" value="1.0">  -->
+	<input type="image" name="submit" border="0" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="PayPal - The safer, easier way to pay online">
+
+	<img alt="" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+</form>
+
+
+<a href='/callback/<%= params[:splat].first %>'>No thank you!</a>
