@@ -20,10 +20,22 @@ get '/' do
   mac = getMac(request.ip)
   "Your IP address is #{request.ip} and your MAC is #{mac}"
   postData = Net::HTTP.post_form(URI.parse(serverurl), 
-  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => url('/callback')})
+  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => 'http://172.16.254.1/callback'})
   postData.body
 end
 
 get '/callback' do
- puts "returned" 
+ mac = params["mac"]
+ redirect_to = params["redirect_to"]
+ system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{mac} -j NET")
+
+ redirect redirect_to
+end
+
+get '/revoke' do
+  mac = params["mac"]
+  redirect_to = params["redirect_to"]
+  system("sudo iptables -t nat -D PREROUTING -m mac --mac-source #{mac} -j NET")
+  redirect redirect_to
+
 end
