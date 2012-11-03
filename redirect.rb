@@ -20,7 +20,7 @@ get '/*' do
   mac = getMac(request.ip)
   "Your IP address is #{request.ip} and your MAC is #{mac}"
   postData = Net::HTTP.post_form(URI.parse(serverurl), 
-  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => 'http://172.16.254.1/callback', path => request.path_info, orig_host => request.host})
+  {'ip' => request.ip, 'mac' => mac, 'redirect_to' => 'http://172.16.254.1/callback', 'path' => request.path_info, 'orig_host' => request.host})
   postData.body
 end
 
