@@ -2,7 +2,6 @@ require 'sinatra'
 require 'net/http'
 require 'uri'
 require "base64"
-begin
 
 system("bin/start_routing.sh")
 
@@ -62,8 +61,4 @@ get '/revoke' do
   redirect redirect_to
 end
 
-rescue SystemExit, Interrupt
-  raise
-  system("bin/stop_routing.sh")
-end
 
