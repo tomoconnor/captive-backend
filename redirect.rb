@@ -2,6 +2,9 @@ require 'sinatra'
 require 'net/http'
 require 'uri'
 require "base64"
+begin
+
+system("bin/start_routing.sh")
 
 server_ip = UDPSocket.open {|s| s.connect("8.8.8.8", 1); s.addr.last}
 # So it turns out this *is* the easiest way to find your IP.  One of them, anyway.
@@ -57,5 +60,10 @@ get '/revoke' do
   redirect_to = params["redirect_to"]
   system("sudo iptables -t nat -D PREROUTING -m mac --mac-source #{mac} -j NET")
   redirect redirect_to
+end
+
+rescue SystemExit, Interrupt
+  raise
+  system("bin/stop_routing.sh")
 end
 
