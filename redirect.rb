@@ -23,8 +23,8 @@ end
 get '/callback/*' do
   redirect_url = "#{Base64.decode64(params[:splat].first)}?#{Time.now.to_i}"
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{getMac(request.ip)} -j NET")
-
-  erb :callback, :locals => {:redirect_url => redirect_url}
+  redirect redirect_url
+  #erb :callback, :locals => {:redirect_url => redirect_url}
 end
 
 get '/*' do
