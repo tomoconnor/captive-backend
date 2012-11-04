@@ -50,13 +50,25 @@ in bin/start_routing.sh there’s a bunch of iptables rules which set up the rou
 1. All traffic on port 80 gets redirected to the Pi’s IP onto port 4567 (the ruby port for the ruby app) initially 
 1. A new table called NET gets created, which is where we’ll dump the traffic from known clients into, and this’ll go straight to the internet.
 
-The next step is to start the ruby application, which will intercept HTTP requests to *anywhere*, and then redirect them to a Landing Page ![Landing Page](https://raw.github.com/tomoconnor/captive-backend/master/site/landing_page.jpg), which will then redirect to the Paypal payment gateway ![Payment Gateway](https://raw.github.com/tomoconnor/captive-backend/master/site/paypal_login.jpg) for their donation (they don’t have to make one, they can cancel, and it’ll give you a bit of a dirty look, but at least you get your precious internet). 
+The next step is to start the ruby application, which will intercept HTTP requests to *anywhere*, and then redirect them to a Landing Page 
+
+![Landing Page](https://raw.github.com/tomoconnor/captive-backend/master/site/landing_page.jpg), 
+
+Which will then redirect to the Paypal payment gateway 
+
+![Payment Gateway](https://raw.github.com/tomoconnor/captive-backend/master/site/paypal_login.jpg) 
+
+Where the user will actually pay for their donation.  All through this process, they don’t have to make one, they can cancel, and still surf for free.
+
 ![Paypal Review Screen](https://raw.github.com/tomoconnor/captive-backend/master/site/review.jpg)
+
+The rest of the process just follows the traditional Paypal review/complete process.
 
 ![Paypal process completed](https://raw.github.com/tomoconnor/captive-backend/master/site/complete.jpg)
 
 
 The paypal return URL (when you click "Continue surfing") will mean that you’ll get redirected to where you expected to go to initially, after you hit our landing page.
+
 
 
 Things I found out:
