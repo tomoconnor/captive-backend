@@ -16,11 +16,13 @@ def getMac(ip)
 end
 
 get '/donate/*' do
+  response.headers['Cache-Control'] = "no-cache, no-store"
   cancel_url = cancel_url_template + params[:splat].first
   erb :index, :locals => {:cancel_url => cancel_url}
 end
 
 get '/callback/*' do
+  response.headers['Cache-Control'] = "no-cache, no-store"
   redirect_url = "#{Base64.decode64(params[:splat].first)}?#{Time.now.to_i}"
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{getMac(request.ip)} -j NET")
   redirect redirect_url
@@ -28,11 +30,13 @@ get '/callback/*' do
 end
 
 get '/*' do
+  response.headers['Cache-Control'] = "no-cache, no-store"
   redirect "http://#{server_ip}:4567/donate/#{Base64.encode64(request.url)}"
 end
 
 
 get '/revoke' do
+  response.headers['Cache-Control'] = "no-cache, no-store"
   mac = params["mac"]
   redirect_to = params["redirect_to"]
   system("sudo iptables -t nat -D PREROUTING -m mac --mac-source #{mac} -j NET")
