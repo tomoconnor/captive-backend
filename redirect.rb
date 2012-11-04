@@ -3,7 +3,7 @@ require 'net/http'
 require 'uri'
 require "base64"
 
-system("bin/start_routing.sh")
+#system("bin/start_routing.sh")
 
 server_ip = UDPSocket.open {|s| s.connect("8.8.8.8", 1); s.addr.last}
 # So it turns out this *is* the easiest way to find your IP.  One of them, anyway.
