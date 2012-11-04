@@ -1,4 +1,4 @@
-RaspberryPortal
+RaspberryPortal//CharityWifi
 ===============
 
 1. Configure the RaspberryPi thusly:
