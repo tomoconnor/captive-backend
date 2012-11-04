@@ -25,7 +25,10 @@ get '/callback/*' do
   response.headers['Cache-Control'] = "no-cache, no-store"
   redirect_url = "#{Base64.decode64(params[:splat].first)}?#{Time.now.to_i}"
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{getMac(request.ip)} -j NET")
-  system("sudo /usr/bin/rmtrack #{request.ip}")
+  nc = `sudo /usr/sbin/conntrack -L |grep 172.16.254.2 | grep ESTAB | grep dport=80|wc -l`.to_i
+  if nc > 10
+    system("sudo /usr/bin/rmtrack #{request.ip}")
+  end
   sleep(1)
   erb :callback, :locals => {:redirect_url => redirect_url}
 end
