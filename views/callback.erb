@@ -1,3 +1,14 @@
+<html>
+<head>
 <meta http-equiv="refresh" content="2;url=<%= redirect_url %>">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+$.get("<%= redirect_url %>",null,function(){document.location="<%= redirect_url %>";});
+</head>
 
+<body>
+<img src="/images/ajax-loader.gif"/>
 <a href='<%= redirect_url %>'>Automatically redirecting you to <%= redirect_url %></a>
+</body>
+</html>
