@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/football.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="/javascript/donate.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1 class='title'>
+      Fast Scoring Rangers
+    </h1>
+
+    <div class='description'>
+      <h1>Enjoy our free WiFi</h1>
+
+      <p>
+        Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+      <p>
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+      </p>
+    </div>
+
+    <div class='donate'>
+      <h1>We're renovating the cantina</h1>
+
+      <p>We're trying to raise £10.000 to renovate the cantina. The last time the cantina was renovated was in 1982, and it's in real need of some TLC.</p>
+
+      <center><img src='/images/cantine.png' /></center>
+
+      <div class='donate-buttons'>
+        <a href='#' class='first active' data-amount='1'>&pound;1</a>
+        <a href='#' data-amount='5'>&pound;5</a>
+        <a href='#' class='last' data-amount='10'>&pound;10</a>
+      </div>
+
+      <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="business" value="polfning@aol.com">
+        <input type="hidden" name="cmd" value="_donations">
+        <input type="hidden" name="currency_code" value="GBP">
+        <input type="hidden" name="amount" value="1">
+        <input type="hidden" name="item_name" value="Internet Access Donation">
+        <input type="hidden" name="InvoiceID" value="|M123456-1| Donation via MissionFish for BBC Children in Need">
+        <input type="hidden" name="return" value="#">
+        <input type="hidden" name="cancel_return" value="#">
+        <input type="hidden" name="cbt" value="Continue surfing">
+
+        <!-- <input type="hidden" name="amount" value="1.0">  -->
+        <input type="image" name="submit" border="0" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="PayPal - The safer, easier way to pay online">
+
+    	  <a href='#' >Continue surfing</a>
+        <img alt="" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif">
+      </form>
+  	</div>
+  </body>
+</html>
