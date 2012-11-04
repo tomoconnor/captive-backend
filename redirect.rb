@@ -27,7 +27,7 @@ end
 get '/callback/*' do
   response.headers['Cache-Control'] = "no-cache, no-store"
   response.headers['Connection'] = "close" #ESPECIALLY here. 
-  redirect_url = "#{Base64.decode64(params[:splat].first)}?#{Time.now.to_i}"
+  redirect_url = Base64.decode64(params[:splat].first)
   # allow the user and clear their established connections
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{getMac(request.ip)} -j NET") 
   system("sudo /usr/bin/rmtrack #{request.ip}")
