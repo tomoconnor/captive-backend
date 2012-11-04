@@ -2,9 +2,11 @@ require 'sinatra'
 require 'net/http'
 require 'uri'
 require "base64"
+require 'bitly'
 
 server_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
 cancel_url_template = "http://#{server_ip}:4567/callback/"
+bit = Bitly.new("tomoconnor", "R_4b9c2abad5ab9088faa5b4dfd175d753")
 
 def getMac(ip)
   begin
@@ -24,7 +26,8 @@ end
 get '/callback/*' do
   response.headers['Cache-Control'] = "no-cache, no-store"
   redirect_url = "#{Base64.decode64(params[:splat].first)}?#{Time.now.to_i}"
-  redirect_url = "http://www.google.co.uk"
+  x = bit.shorten(Base64.decode64(params[:splat].first))
+  redirect_url = x.short_url
   system("sudo iptables -t nat -I PREROUTING -m mac --mac-source #{getMac(request.ip)} -j NET")
   system("sudo /usr/bin/rmtrack #{request.ip}")
   sleep(1)
