@@ -84,4 +84,10 @@ Things I found out:
 9. The only way to get a user’s mac address is to shell out to arp. 
 10. I *really* need sleep.
 
+CharityWifi won 2nd Place
+-------------------------
+![Winning a prize of a Samsung Galaxy S3 each](http://yfrog.com/scaled/landing/875/e0rik.jpg)
+
+We won 2nd place, and apparently created "a very innovative hack" said one of the judges.
+
 
